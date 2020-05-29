@@ -1,0 +1,65 @@
+<app-page-header [heading]="'Access Logs'" [icon]="'fa-book'"></app-page-header>
+
+<div class="form-inline alert alert-success">
+    <div class="form-group">
+        <label for="dp" class="mr-1">Filter:</label>
+        <div class="input-group mr-1">
+            <input class="form-control form-control-sm" placeholder="YYYY-mm-dd" name="dp" ngbDatepicker
+                #d1="ngbDatepicker" [(ngModel)]="date">
+            <div class="input-group-append">
+                <button class="btn btn-success btn-sm fa fa-calendar" (click)="d1.toggle()" type="button"></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input [(ngModel)]="criteria" class="form-control form-control-sm" placeholder="Search..." type="text" />
+            <div class="input-group-append">
+                <button class="btn btn-danger btn-sm fa fa-search" type="button" (click)="search()"></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <i class="fa fa-table fa-fw"></i> List
+            </div>
+            <div class="card-body">
+
+
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Create Time Stamp</th>
+                            <th>User</th>
+                            <th>Log</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let record of records | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
+                            <th scope="row">
+                                {{i + 1}}</th>
+                            <td>{{record.createtimestamp | date:"longDate"}}</td>
+                            <td>{{record.userfullname}}</td>
+                            <td>{{record.log}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--</card>-->
+
+        </div>
+
+    </div>
+</div>
+<div class="justify-content-center mt-1">
+    <ngb-pagination [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+        [collectionSize]="records.length / pageSize"></ngb-pagination>
+</div>

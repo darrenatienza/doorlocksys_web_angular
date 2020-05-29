@@ -1,0 +1,55 @@
+<div [@routerTransition]>
+
+    <app-page-header [heading]="'BatStateU Inventory'" [icon]="'fa-wrench'"></app-page-header>
+    <!-- show page header -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class='page-header'>
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+    </div>
+    <app-main-menu *ngIf="show_main_menu_html" (show_read_all_inventory_event)="readAllInvRecord($event)"
+        (show_read_all_qty_inv_event)="readAllQtyInv($event)"
+        (show_read_all_inv_detail_event)="readAllInvDetails($event)"
+        (show_read_all_inv_rec_event)="readAllInvRecordV1_1($event)"></app-main-menu>
+
+    <!--<Inventory Record>-->
+    <app-add-edit-inv-rec *ngIf="show_add_edit_inv_rec_html_v1_1" [invRecordID]="invRecordID" [recordGuid]="recordGuid"
+        (show_read_all_inv_record_event)="readAllInvRecord($event)">
+    </app-add-edit-inv-rec>
+
+    <app-read-all-inv-rec *ngIf="show_read_all_inv_rec_html_v1_1"
+        (show_add_edit_inv_rec_event)="addEditInvRecordV1_1($event)"
+        (show_read_all_qty_inv_event)="readAllQtyInv($event)" (show_print_inv_rec_event)="printInventory($event)"
+        (show_main_menu_event)="showMainMenu($event)">
+    </app-read-all-inv-rec>
+
+    <app-print-inventory-record *ngIf="show_print_inv_record_html" [data]="data"
+        (show_read_all_inv_rec_event)="readAllInvRecordV1_1($event)"></app-print-inventory-record>
+
+    <!--</Inventory Record>-->
+
+    <!--Quantity Inventory-->
+    <app-print-qty-inv *ngIf="show_print_qty_inv_html" [data]="data"
+        (show_read_all_qty_inv_event)="readAllQtyInv($event)">
+    </app-print-qty-inv>
+
+    <app-read-all-qty-inv *ngIf="show_read_all_qty_inv_html" (show_add_edit_qty_inv_event)="addEditQtyInv($event)"
+        (show_print_qty_inv_event)="printQtyInv($event)" (show_main_menu_event)="showMainMenu($event)">
+    </app-read-all-qty-inv>
+
+    <app-add-edit-quantity-inventory *ngIf="show_add_edit_qty_inv_html" [qtyInvID]="qtyInvID"
+        (show_read_all_qty_inv_event)="readAllQtyInv($event)">
+    </app-add-edit-quantity-inventory>
+
+    <!--Inventory Details-->
+    <app-read-all-inv-details *ngIf="show_read_all_inv_detail_html"
+        (show_add_edit_inv_detail_event)="addEditInvDetail($event)" (show_main_menu_event)="showMainMenu($event)">
+    </app-read-all-inv-details>
+
+    <app-add-edit-inv-detail *ngIf="show_add_edit_inv_detail_html" [invDetailID]="invDetailID"
+        (show_read_all_inv_detail_event)="readAllInvDetails($event)"
+        (show_add_edit_inv_detail_event)="addEditInvDetail($event)"></app-add-edit-inv-detail>
+
+</div>

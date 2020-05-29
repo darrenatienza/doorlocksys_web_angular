@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card card-default">
+            <div class="card-header">
+                <fa-icon [icon]="['fas', 'walking']" size="lg"></fa-icon> Current Device Action
+            </div>
+            <div class="card-body">
+                <radio-button #radio2 [items]="items" [(ngModel)]="selectedItem" (change)="change()"></radio-button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-6">
+        <div class="card card-default">
+            <div class="card-header">
+                <fa-icon [icon]="['fas', 'question-circle']" size="lg"></fa-icon> Other Information
+            </div>
+            <div class="card-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>

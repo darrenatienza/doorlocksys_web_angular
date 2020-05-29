@@ -1,0 +1,31 @@
+A:link {
+    COLOR: rgb(255, 255, 255);
+    TEXT-DECORATION: none;
+    font-weight: normal
+}
+
+A:visited {
+    COLOR: rgb(255, 255, 255);
+    TEXT-DECORATION: none;
+    font-weight: normal
+}
+
+A:active {
+    COLOR: rgb(2, 0, 110);
+    TEXT-DECORATION: none
+}
+
+A:hover {
+    COLOR: blue;
+    TEXT-DECORATION: none;
+    font-weight: none
+}
+.bg-blue{
+    background-color: blue;
+}
+.bg-bsu{
+    background-color:#800000;
+}
+.huge{
+    font-size: 20px;
+}

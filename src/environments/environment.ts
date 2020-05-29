@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // url: 'https://dooraccess.000webhostapp.com/api/index.php'
+  url: 'http://localhost:8081/api/doorlocksys-api/'
 };
+

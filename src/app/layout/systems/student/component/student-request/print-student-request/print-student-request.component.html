@@ -1,0 +1,110 @@
+<div class="form-inline mb-3 alert alert-success">
+    <div class="form-group mr-2">
+        <label class="mr-1">Set Office:</label>
+        <input class="form-control form-control-sm mb-1" [(ngModel)]="office" type="text"
+            placeholder="Office here.." />
+    </div>
+    <div class="form-group mr-2">
+        <label class="mr-1">Set Prepared By:</label>
+        <input class="form-control form-control-sm mb-1" [(ngModel)]="preparedByName" type="text"
+            placeholder="Name here.." />
+    </div>
+    <div class="form-group">
+            <label class="mr-1">Set Designation:</label>
+            <input class="form-control form-control-sm" [(ngModel)]="designation" type="text"
+                placeholder="Designation here.." />
+        </div>
+</div>
+<div class="card card-default">
+    <div class="card-header">
+
+        <i class="fa fa-table fa-fw"></i> Print Preview
+        <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="card-body">
+        <div id="print">
+            <div class="report-header">
+                <img src="assets/images/bsu.jpg" height="75" width="75
+                                        " class="logo">
+                <table>
+
+                    <tr class="headerSize16">
+                        <td>Republic of the Philippines</td>
+                    </tr>
+                    <tr class="headerSize20">
+                        <td>Batangas State University Rosario</td>
+                    </tr>
+                    <tr>
+                        <td>Namunga, Rosario, Batangas</td>
+                    </tr>
+                    <tr class="headerSize20">
+                        <td>{{office}}</td>
+                    </tr>
+                    <tr>
+                        <td>Student Request Report</td>
+                    </tr>
+                </table>
+            </div>
+
+            <table class="report-table">
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Sr Code</th>
+                        <th>Student Name</th>
+                        <th>Request For</th>
+                        <th>Receipt Number</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 12pt">
+                    <tr *ngFor="let record of records; let i = index">
+                        <td>{{record.createDate | date:"shortDate"}}</td>
+                        <td>{{record.studentSrCode}}</td>
+                        <td>{{record.studentFullName}}</td>
+                        <td>{{record.studentReqTypeDescription}}</td>
+                        <td>{{record.receiptNum}}</td>
+                        <td>{{record.reason}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="report-footer">
+                <tr>
+                    <td>
+                        Prepared By:
+                    </td>
+                    <td></td>
+                    <td class="padding-left-50">
+                        Received By:
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold">
+                        {{preparedByName}}
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                       {{designation}}
+                    </td>
+                    <td class="padding-left-50">
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="btn btn-primary btn-sm pull-right" (click)="saveData()" [useExistingCss]="true" printSectionId="print" ngxPrint>
+            <i class="fa fa-print"></i>
+            Print
+        </button>
+    </div>
+</div>

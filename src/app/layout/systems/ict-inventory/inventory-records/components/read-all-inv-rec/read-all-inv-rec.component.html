@@ -1,0 +1,133 @@
+<div class="row">
+
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <i class="fa fa-table fa-fw"></i> List
+                <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+            </div>
+
+            <div class="card-body  table-responsive">
+
+                <div class="form-inline mb-2">
+                    <div class="form-group">
+                        <button class="btn btn-success btn-sm mr-1" (click)="addNew()">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm mr-1" (click)="print()">
+                            <i class="fa fa-print"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--<Filter>-->
+                <div class="alert alert-success">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 mr-1 mb-1">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Filter</label>
+                                </div>
+                                <select id="locationSelect" class="form-control form-control-sm" [(ngModel)]="location"
+                                    [value]=''>
+                                    <option value="">Select Location</option>
+                                    <option *ngFor="let item of locations" value="{{item.description}}">
+                                        {{item.description}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mr-1 mb-1">
+                            <select class="form-control form-control-sm" [(ngModel)]="type" [value]=''>
+                                <option value="">Select Type</option>
+                                <option *ngFor="let item of types" value="{{item.description}}">{{item.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mr-1 mb-1">
+                            <select class="form-control form-control-sm" [(ngModel)]="status" [value]=''>
+                                <option value="">Select Status</option>
+                                <option *ngFor="let item of statusList" value="{{item.description}}">
+                                    {{item.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <input placeholder="Search..." class="form-control form-control-sm" type="text"
+                                    [(ngModel)]="criteria">
+                                <div class=" input-group-append">
+                                    <button class="btn btn-primary btn-sm" (click)="search()" type="button">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<!Filter>-->
+                <div class="table-wrap">
+                    <table class="table table-bordered table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th [class.active]="order === 'propertyNum'" (click)="setOrder('propertyNum')">Property
+                                    # <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span></th>
+                                <th [class.active]="order === 'equipNum'" (click)="setOrder('equipNum')">Equipment #
+                                    <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span></th>
+                                <th [class.active]="order === 'dateAcquired'" (click)="setOrder('dateAcquired')">Date
+                                    Acquired <span [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span></th>
+                                <th [class.active]="order === 'status'" (click)="setOrder('status')">Status <span
+                                        [hidden]="reverse">▼</span>
+                                    <span [hidden]="!reverse">▲</span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr
+                                *ngFor="let record of records
+                                | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | orderBy: order:reverse:'case-insensitive'; let i = index">
+                                <th scope="row">
+                                    {{i + 1}}</th>
+                                <td>{{record.propertyNum}}</td>
+                                <td>{{record.equipNum}}</td>
+                                <td>{{record.dateAcquired | date:"shortDate"}}</td>
+                                <td>{{record.status}}</td>
+                                <th>
+                                    <button type="button" class="btn btn-info btn-sm mr-1"
+                                        (click)="edit(record.invRecordID,record.invRecordGuid)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                        (click)="showDeleteAlert(record.invRecordID)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--</card>-->
+        </div>
+        <div class="justify-content-center mt-1">
+            <ngb-pagination [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                [collectionSize]="records.length"></ngb-pagination>
+        </div>
+
+
+
+    </div>
+
+</div>
+<swal #showDeleteQuestion title="Delete Selected Record?" text="This cannot be undone" type="question"
+    [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteConfirmed()">
+</swal>
+<swal #showRecordDeleted title="Confirmation" text="Record has been deleted!" type="success">
+</swal>

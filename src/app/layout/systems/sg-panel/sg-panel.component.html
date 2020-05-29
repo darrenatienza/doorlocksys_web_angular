@@ -1,0 +1,47 @@
+<div [@routerTransition]>
+
+      <app-page-header [heading]= "'Security Services'" [icon]="'fa-users'"></app-page-header>
+    <!-- show page header -->
+    <div class="row">
+      <div class="col-md-6">
+          <div class='page-header'><h1>{{title}}</h1></div>
+      </div>
+    </div>
+
+    <app-main-menu
+    *ngIf="show_main_menu_html"
+    (show_read_all_report_html) = "readAllReport($event)"
+    ></app-main-menu>
+
+    <app-add-new-report
+    *ngIf="show_add_new_report_html"
+    (show_read_all_report_html) = "readAllReport($event)"
+
+    ></app-add-new-report>
+
+    <app-edit-report
+    *ngIf="show_edit_report_html"
+    (show_read_all_report_html) = "readAllReport($event)"
+    [reportID]="reportID"
+
+    ></app-edit-report>
+
+    <app-read-all-report
+    *ngIf="show_read_all_report_html"
+    (show_add_new_report_event) = "addNewReport($event)"
+    (show_edit_report_event) = "editReport($event)"
+    (show_delete_report_event) = "deleteReport($event)"
+    (show_view_details_report_event) = "viewDetailsReport($event)"
+    (show_print_report_event) = "printReport($event)"
+    (show_main_menu_event) = "showMainMenu($event)"
+
+    ></app-read-all-report>
+
+    <app-print-report
+    *ngIf="show_print_report_html"
+    (show_read_all_report_html) = "readAllReport($event)"
+    [dateFrom] = "dateFrom"
+    [dateTo] = "dateTo"
+    ></app-print-report>
+    
+</div>

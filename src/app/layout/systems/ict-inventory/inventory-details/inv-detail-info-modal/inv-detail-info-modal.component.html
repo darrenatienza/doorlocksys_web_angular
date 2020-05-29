@@ -1,0 +1,26 @@
+<ng-template #invDetailInfo let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title">Inventory Detail</h6>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-success">
+            <div class="justify-content-center pb-1">
+                <div class="container">
+                    <img [src]="img" alt="Equipment Image">
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info">
+            <div class="center-text">
+                    <p>{{invDetail.description}}</p>
+                    <p>{{invDetail.invType_Description}}</p>
+                    <pre>{{invDetail.specs}}</pre>
+            </div>
+
+        </div>
+    </div>
+
+</ng-template>

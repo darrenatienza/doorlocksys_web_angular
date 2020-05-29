@@ -1,0 +1,45 @@
+<div [@routerTransition]>
+
+    <app-page-header [heading]="'Student Services'" [icon]="'fa-users'"></app-page-header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class='page-header'>
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+    </div>
+    <!--Student Records-->
+    <app-add-new-student *ngIf="show_add_new_student_html" (show_read_all_student_event)="readAllStudents($event)"
+        (show_add_edit_student_request_event)="
+        addEditStudentRequest($event)" [parentCaller]="parentCaller">
+    </app-add-new-student>
+
+    <app-edit-student *ngIf="show_edit_student_html" [studentID]="studentID"
+        (show_read_all_student_event)="readAllStudents($event)">
+
+    </app-edit-student>
+
+    <app-read-all-student *ngIf="show_read_all_student_html" (show_add_new_student_event)="addNewStudent($event)"
+        (show_edit_student_event)="editStudent($event)" (show_main_menu_event)="showMainMenu($event)">
+    </app-read-all-student>
+
+    <!--/Student Records-->
+
+
+    <!--Student Request-->
+    <app-read-all-student-request *ngIf="show_read_all_student_request_html"
+        (show_add_edit_student_request_event)="addEditStudentRequest($event)"
+        (show_print_student_request_event)="printStudentRequest($event)"
+        (show_main_menu_event)="showMainMenu($event)">
+    </app-read-all-student-request>
+
+    <app-add-edit *ngIf="show_add_edit_student_request_html" (show_add_new_student_event)="addNewStudent($event)"
+        (show_read_all_student_request_event)="readAllStudentRequests($event)" [studentReqID]="studentReqID">
+    </app-add-edit>
+    <app-print-student-request *ngIf="show_print_student_request_html"
+        (show_read_all_student_request_event)="readAllStudentRequests($event)"></app-print-student-request>
+    <!--/Student Request-->
+
+    <app-main-menu *ngIf="show_main_menu_html" (show_read_all_student_event)="readAllStudents($event)"
+        (show_read_all_student_request_event)="readAllStudentRequests($event)"></app-main-menu>
+</div>

@@ -1,0 +1,9 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Administrator'" [icon]="'fa-user'"></app-page-header>
+    <app-add-user *ngIf="show_add_user_html" (show_read_all_user_event) = "readAllUser($event)"></app-add-user>
+    <app-edit-user *ngIf="show_edit_user_html" [userID]="userID" (show_read_all_user_event) = "readAllUser($event)"></app-edit-user>
+
+    <app-read-all-user *ngIf="show_read_all_user_html" (show_add_user_event)="addUser($event)"
+        (show_edit_user_event)="editUser($event)"
+        ></app-read-all-user>
+</div>

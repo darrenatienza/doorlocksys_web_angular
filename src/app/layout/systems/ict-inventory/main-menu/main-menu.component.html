@@ -1,0 +1,24 @@
+<div class="card card-default mb-3">
+    <div class="card-header">
+
+        <i class="fa fa-home fa-fw icon-24"></i> Main Panel
+    </div>
+    <div class="card-body table-responsive">
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-stat [bgClass]="'success'" [icon]="'fa-calendar'" [count]="0" [label]="'Quantity Inventory'"
+                    (click)="showQuantityInventory()"></app-stat>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-stat [bgClass]="'info'" [icon]="'fa-calendar'" [count]="0" [label]="'Inventory Records'"
+                    (click)="showInvRecords()"></app-stat>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-stat [bgClass]="'warning'" [icon]="'fa-calendar'" [count]="0" [label]="'Inventory Details'"
+                    (click)="showInventoryDetails()"></app-stat>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div [@routerTransition]>
+
+    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide"
+                        width="100%">
+
+                    <div class="carousel-caption">
+                        <h3 style="color:rgb(46, 46, 46)">{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-sys-stat [link]="'./#/system/users'" [bgClass]="'primary'" [icon]="'fa-users'" [count]="userCount" [label]="'Registered Users'">
+                </app-sys-stat>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-sys-stat [link]="'./#/system/accesslogs'" [bgClass]="'warning'" [icon]="'fa-book'" [count]="accesslogCount" [label]="'Access Logs'">
+                </app-sys-stat>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-sys-stat [link]="'./#/system/device-monitor'" [bgClass]="'success'" [icon]="'fa-tv'" [actionTitle]="deviceAction" [label]="'Device Action'">
+                </app-sys-stat>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-1">
+                <app-sys-stat [bgClass]="'danger'" [icon]="'fa-question-circle'" [count]="" [label]="'About'">
+                </app-sys-stat>
+            </div>
+        </div>

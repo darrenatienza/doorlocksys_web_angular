@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-xl-6">
+
+        <div class="card card-default mb-3">
+            <div class="card-header">
+                <i class="fa fa-book fa-fw"></i> Required Informations
+                <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form [formGroup]="addEditForm" (ngSubmit)="save()">
+
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select formControlName="invType" class="form-control form-control-sm">
+                            <option *ngFor="let item of invTypes | orderBy:'description'" value="{{item.invTypeID}}">
+                                {{item.description}}</option>
+                        </select>
+                        <div *ngIf="addEditForm.controls['invType'].invalid && (addEditForm.controls['invType'].dirty || addEditForm.controls['invType'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['invType'].errors.required">
+                                Inventory Type is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select formControlName="invLocation" class="form-control form-control-sm">
+                            <option *ngFor="let item of invLocations | orderBy:'description'"
+                                value="{{item.invLocationID}}">
+                                {{item.description}}</option>
+                        </select>
+                        <div *ngIf="addEditForm.controls['invLocation'].invalid && (addEditForm.controls['invLocation'].dirty || addEditForm.controls['invLocation'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['invLocation'].errors.required">
+                                Inventory Location is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select formControlName="invStat" class="form-control form-control-sm">
+                            <option *ngFor="let item of invStats" value="{{item.invStatID}}">
+                                {{item.description}}</option>
+                        </select>
+                        <div *ngIf="addEditForm.controls['invStat'].invalid && (addEditForm.controls['invStat'].dirty || addEditForm.controls['invStat'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['invStat'].errors.required">
+                                Status is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Un Recorded Count</label>
+                        <div class="input-group">
+                            <input formControlName="count" class="form-control form-control-sm" type="text" required
+                                numbersOnly />
+                            <!-- <div class=" input-group-append">
+                                <button class="btn btn-success btn-sm" (click)="addCount()" type="button">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                                <button class="btn btn-danger btn-sm" (click)="minusCount()" type="button">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </div>-->
+                        </div>
+                        <div *ngIf="addEditForm.controls['count'].invalid && (addEditForm.controls['count'].dirty || addEditForm.controls['count'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['count'].errors.required">
+                                Count is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <textarea rows="5" #box formControlName="remarks" class="form-control form-control-sm"
+                            type="text"></textarea>
+                    </div>
+                    <hr />
+                    <button type="submit" class="btn btn-success  ml-3 pull-right" [disabled]="addEditForm.invalid"><i
+                            class="fa fa-save"></i>
+                        Save</button>
+                    <button type="button" class="btn btn-danger  pull-right" (click)="close()"><i
+                            class="fa fa-warning"></i>
+                        Cancel</button>
+                </form>
+
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+    </div>
+
+</div>
+<swal #saveConfirmation title="Confirmation" text="Record Save" type="success"></swal>
+<swal #isExistSrCodeConfirmation title="SrCode already exists" text="Alert" type="danger"></swal>

@@ -1,0 +1,131 @@
+<div class="card card-default mb-3">
+    <div class="card-header">
+
+        <i class="fa fa-table fa-fw"></i> List of Reports
+        <button class="btn btn-success pull-right btn-sm" (click)="showMainMenu()"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="card-body table-responsive">
+        <div class="form-inline">
+            <button class="btn btn-success btn-sm mr-1" (click)="addNewReport()">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button class="btn btn-primary btn-sm mr-1" (click)="print()">
+                <i class="fa fa-print"></i>
+
+            </button>
+            <button class="btn btn-danger btn-sm mr-1" (click)="openSearch(searchContent)">
+                <i class="fa fa-search"></i>
+            </button>
+            <!--<button class="btn btn-primary btn-sm mb-3 pull-right" (click)="refresh()">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                    <button class="btn btn-primary btn-sm mb-3 pull-right mr-1" (click)="open(content)">
+                        <i class="fa fa-search"></i>
+                    </button> -->
+
+
+        </div>
+
+
+
+        <table class="table table-bordered table-hover table-sm mt-3">
+            <thead>
+                <tr>
+                    <th colspan="7">Date Covered: {{ dateFrom | date:"longDate" }} - {{dateTo | date:"longDate"}}</th>
+
+                </tr>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="5%">Date</th>
+                    <th width="25%">Descriptions</th>
+                    <th width="20%">Action Taken</th>
+                    <th width="20%">Security Guard/s In-Charge</th>
+                    <th width="15%">Remarks</th>
+                    <th width="15%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let record of records; let i = index">
+                    <th scope="row">
+                        {{i + 1}}</th>
+                    <td>{{record.date | date:"shortDate"}}</td>
+                    <td>{{record.desc}}</td>
+                    <td>{{record.acts}}</td>
+                    <td>{{record.personnel}}</td>
+                    <td>{{record.rmks}}</td>
+
+                    <th>
+                        <!--<div ngbDropdown class="d-inline-block dropdown">
+                                    <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Action</button>
+                                    <div ngbDropdownMenu>
+                                        <button class="dropdown-item btn-sm" (click)="edit(record.property_record_id)">Modify</button>
+                                        <button class="dropdown-item btn-sm" (click)="delete(record.property_record_id)">Delete</button>
+                                    </div>
+                                </div> -->
+                        <button type="button" class="btn btn-info btn-sm mr-1" (click)="editReport(record.reportID)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="showDeleteAlert(record.reportID)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!--</card>-->
+</div>
+
+<!-- <Search Modal> -->
+<ng-template #searchContent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Filter</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form">
+            <div class="form-group">
+                <label>
+                    From
+                </label>
+                <div class="input-group">
+                    <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" name="dpFrom"
+                        [(ngModel)]="dateFromObj" ngbDatepicker #d1="ngbDatepicker" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-sm fa fa-calendar" (click)="d1.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="mr-1">
+                    To
+                </label>
+                <div class="input-group">
+                    <input class="form-control form-control-sm" placeholder="yyyy-mm-dd" name="dpTo"
+                        [(ngModel)]="dateToObj" ngbDatepicker #d2="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-sm fa fa-calendar" (click)="d2.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- </Search Modal> -->
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" (click)="c('Search')">Search</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+    </div>
+</ng-template>
+<swal #deleteSwal title="Delete Selected Record?" text="This cannot be undone" type="question" [showCancelButton]="true"
+    [focusCancel]="true" (confirm)="deleteReport(reportID)">
+</swal>
+<swal #deleteConfirmSwal title="Confirmation" text="Record has been deleted!" type="success">
+</swal>

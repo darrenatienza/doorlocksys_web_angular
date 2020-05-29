@@ -1,0 +1,79 @@
+<div class="row">
+
+    <div class="col-xl-6">
+
+        <div class="card card-default mb-3">
+            <div class="card-header">
+                <i class="fa fa-book fa-fw"></i> Required Informations
+                <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <div class="alert alert-success" >
+                    <div class="justify-content-center pb-1">
+                        <div class="container">
+                            <img [src]="img" alt="Equipment Image">
+                            <button class="btn" (click)="showUploadImage()"><i class="fa fa-camera"></i> Upload</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <form [formGroup]="addEditForm" (ngSubmit)="save()" college="form">
+                    <div class="form-group">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input #box formControlName="description" class="form-control form-control-sm" type="text"
+                            required />
+                        <div *ngIf="addEditForm.controls['description'].invalid && (addEditForm.controls['description'].dirty || addEditForm.controls['description'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['description'].errors.required">
+                                Description is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select formControlName="invType" class="form-control form-control-sm">
+                            <option *ngFor="let item of invTypes | orderBy:'description'" value="{{item.invTypeID}}">
+                                {{item.description}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Specifications</label>
+                        <textarea rows="5" #box formControlName="specs" class="form-control form-control-sm" type="text"
+                            required></textarea>
+                        <div *ngIf="addEditForm.controls['specs'].invalid && (addEditForm.controls['specs'].dirty || addEditForm.controls['specs'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['specs'].errors.required">
+                                Specification is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Other Details</label>
+                        <textarea rows="5" #box formControlName="otherDetails" class="form-control form-control-sm"
+                            type="text"></textarea>
+                    </div>
+                    <hr />
+                    <button type="submit" class="btn btn-success  ml-3 pull-right" [disabled]="addEditForm.invalid"><i
+                            class="fa fa-save"></i>
+                        Save</button>
+                    <button type="button" class="btn btn-danger  pull-right" (click)="close()"><i
+                            class="fa fa-warning"></i>
+                        Cancel</button>
+                </form>
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <swal #saveConfirmation title="Confirmation" text="Record Save" type="success">
+    </swal>
+</div>
+<app-upload-image *ngIf="show_upload_image" (onUpdateImageEvent)="onUpdateImage($event)" (onClosedEvent)="onImageUploadClosed()"></app-upload-image>
+<swal #isExistSrCodeConfirmation title="SrCode already exists" text="Alert" type="danger"></swal>

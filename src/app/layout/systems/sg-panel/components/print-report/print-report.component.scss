@@ -1,0 +1,234 @@
+@media print {
+    /* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    body {
+        line-height: 1;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    blockquote,
+    q {
+        quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+}
+
+@media all {
+    .currentDate {
+        margin-top: 20px;
+    }
+
+    p {
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .footer-name {
+        font-weight: bold;
+        padding-top: 24px;
+    }
+
+    .report-header {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+        position: relative;
+    }
+
+    .report-header table {
+        margin: 0 auto;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        margin-left: -230px;
+    }
+
+    .pt-20 {
+        padding-top: 20px;
+    }
+
+    .pt-18 {
+        padding-top: 18px;
+    }
+
+    .report-header table {
+        text-align: center;
+    }
+
+    .fs-20 {
+        font-size: 20px;
+    }
+
+    .fs-16 {
+        font-size: 16px;
+    }
+
+    .headerSize18 {
+        font-size: 18px;
+    }
+
+    .report-table {
+        border: 1px solid black;
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Times New Roman', Times, serif !important;
+        margin-top: 10px;
+    }
+
+    .report-table th {
+        border: 1px solid black !important;
+        text-align: center;
+        font-size: 12pt;
+        padding-left: 3px;
+    }
+
+    .report-table td {
+        word-wrap: break-word;
+        border: 1px solid black;
+        white-space: pre-wrap;
+        text-indent: -4px;
+        padding-left: 20px;
+        padding-top: 5px;
+        padding-bottom: 3px;
+    }
+
+    .report-footer {
+        width: 100%;
+        font-family: 'Times New Roman', Times, serif;
+        margin-top: 20px;
+    }
+
+    .padding-left-50 {
+        padding-left: 50px
+    }
+
+    .font-bold {
+        font-weight: bold
+    }
+
+
+}

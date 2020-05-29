@@ -1,0 +1,19 @@
+body{
+    margin-top: 50px;
+}
+.header h2{
+    text-align: center;
+}
+.header h4{
+    text-align: center;
+}
+tbody td {
+    font-size: 18px;
+}
+thead td {
+    font-size: 20px;
+}
+.office-section{
+    font-weight: bold;
+    margin: 10px;
+}

@@ -1,0 +1,160 @@
+<div class="form-inline mb-3 alert alert-success">
+    <div class="form-group mr-2">
+        <label class="mr-1">Set Office:</label>
+        <input class="form-control form-control-sm mb-1" [(ngModel)]="office" type="text" placeholder="Office here.." />
+    </div>
+    <div class="form-group mr-2">
+        <label class="mr-1">Set Prepared By:</label>
+        <input class="form-control form-control-sm mb-1" [(ngModel)]="preparedByName" type="text"
+            placeholder="Name here.." />
+    </div>
+    <div class="form-group">
+        <label class="mr-1">Set Designation:</label>
+        <input class="form-control form-control-sm" [(ngModel)]="designation" type="text"
+            placeholder="Designation here.." />
+    </div>
+</div>
+<div class="form-inline mb-3  alert alert-info">
+    <div class="form-check mr-1" *ngFor="let status of statusList">
+        <input class="form-check-input" type="checkbox" value="" id="{{status.description}}" (change)="getSelected()" [(ngModel)]="status.selected">
+        <label class="form-check-label" for="{{status.description}}">
+            {{status.description}}
+        </label>
+    </div>
+</div>
+<div class="form-inline mb-3  alert alert-danger">
+    <div class="form-check mr-1" >
+        <input class="form-check-input" type="checkbox" value="" id="recorded"  [(ngModel)]="showRecordedCount">
+        <label class="form-check-label" for="recorded">
+            Recorded
+        </label>
+    </div>
+    <div class="form-check mr-1" >
+        <input class="form-check-input" type="checkbox" value="" id="unRecorded"  [(ngModel)]="showUnRecordedCount">
+        <label class="form-check-label" for="unRecorded">
+            UnRecorded
+        </label>
+    </div>
+</div>
+<div class="card card-default">
+    <div class="card-header">
+
+        <i class="fa fa-table fa-fw"></i> Print Preview
+        <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="card-body">
+        <div id="print">
+            <div class="report-header">
+                <img src="assets/images/bsu.jpg" height="75" width="75
+                                        " class="logo">
+                <table>
+
+                    <tr class="headerSize16">
+                        <td>Republic of the Philippines</td>
+                    </tr>
+                    <tr class="headerSize20">
+                        <td>Batangas State University Rosario</td>
+                    </tr>
+                    <tr>
+                        <td>Namunga, Rosario, Batangas</td>
+                    </tr>
+                    <tr class="headerSize20">
+                        <td>{{office}}</td>
+                    </tr>
+                    <tr>
+                        <td> Inventory Report</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="currentDate">
+                <p>Date: {{dateToday}}</p>
+            </div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th *ngIf="showRecordedCount">Recorded</th>
+                        <th *ngIf="showUnRecordedCount">Un Recorded</th>
+                        <th>Total</th>
+                    </tr>
+
+                </thead>
+                <tbody style="font-size: 12pt">
+                    <tr *ngFor="let record of records; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{record.invType_Description }}</td>
+                        <td>{{record.invLocation_Description}}</td>
+                        <td class="inner-table">
+                            <table>
+                                <tr *ngFor="let stat of   record.recInvStats">
+                                    <td>{{stat.description}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="inner-table" style="padding:0%" *ngIf="showRecordedCount">
+                            <table>
+                                <tr *ngFor="let stat of  record.recInvStats">
+                                    <td>{{stat.count}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="inner-table" style="padding:0%" *ngIf="showUnRecordedCount">
+                            <table>
+                                <tr *ngFor="let stat of  record.unRecInvStats">
+                                    <td>{{stat.count}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="inner-table" style="padding:0%">
+                            <table>
+                                <tr *ngFor="let total of  record.totals">
+                                    <td>{{total}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="report-footer">
+                <tr>
+                    <td>
+                        Prepared By:
+                    </td>
+                    <td></td>
+                    <td class="padding-left-50">
+                        Received By:
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer-name">
+                        {{preparedByName}}
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        {{designation}}
+                    </td>
+                    <td class="padding-left-50">
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="btn btn-primary btn-sm pull-right" (click)="saveData()" [useExistingCss]="true"
+            printSectionId="print" ngxPrint>
+            <i class="fa fa-print"></i>
+            Print
+        </button>
+    </div>
+</div>

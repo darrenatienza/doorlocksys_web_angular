@@ -1,0 +1,165 @@
+<div class="row">
+
+    <div class="col-xl-6">
+
+        <div class="card card-default mb-3">
+            <div class="card-header">
+                <i class="fa fa-book fa-fw"></i> Required Informations
+                <button class="btn btn-success pull-right btn-sm" (click)="cancel()"><i
+                        class="fa fa-times"></i></button>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form [formGroup]="addEditForm" (ngSubmit)="save()" college="form">
+                    <div class="form-group">
+                        <label>Create Date</label>
+                        <div class="input-group">
+                            <input class="form-control form-control-sm" formControlName="createDate" placeholder=""
+                                name="dp" ngbDatepicker #d1="ngbDatepicker" required readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-sm fa fa-calendar" (click)="d1.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        <div *ngIf="addEditForm.controls['createDate'].invalid && (addEditForm.controls['createDate'].dirty || addEditForm.controls['createDate'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['createDate'].errors.required">
+                                Create Date is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sr Code</label>
+                        <div class="input-group">
+                        <input formControlName="srCode" class="form-control form-control-sm" type="text"
+                            (input)="validateExist($event.target.value)" required [readonly] = "isUpdatetable" >
+                            <div class="input-group-append">
+                                    <button class="btn btn-outline-primary btn-sm fa fa-user" (click)="addNewStudent()"
+                                    [disabled] = "isUpdatetable" type="button"></button>
+                                </div>
+                        </div>
+                        <div *ngIf="!isExists &&  addEditForm.controls['srCode'].valid" class="alert alert-danger">
+                            Sr Code is not exists.
+                        </div>
+                        <div *ngIf="isExists &&  addEditForm.controls['srCode'].valid" class="alert alert-success">
+                            Full Name: {{fullName}}
+                        </div>
+                        <div *ngIf=" addEditForm.controls['srCode'].invalid && (addEditForm.controls['srCode'].dirty || addEditForm.controls['srCode'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['srCode'].errors.required ">
+                                Sr Code is required.
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Student Request Type</label>
+                        <select formControlName="studentReqType" class="form-control form-control-sm"
+                            (change)="loadLocations($event.target.value)">
+                            <option *ngFor="let item of studentReqTypes" value="{{item.studentReqTypeID}}">
+                                {{item.description}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Receipt Number</label>
+                        <input #box formControlName="receiptNum" class="form-control form-control-sm" type="text" />
+
+                    </div>
+                    <div class="form-group">
+                        <label>School Year</label>
+                        <select formControlName="schoolYear" class="form-control form-control-sm">
+                            <option *ngFor="let item of schoolYears" value="{{item.schoolYearID}}">
+                                {{item.description}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Semester</label>
+                        <select formControlName="semester" class="form-control form-control-sm">
+                            <option *ngFor="let item of semesters" value="{{item.description}}">
+                                {{item.description}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <input #box formControlName="reason" class="form-control form-control-sm" type="text"
+                            required />
+                        <div *ngIf="addEditForm.controls['reason'].invalid && (addEditForm.controls['reason'].dirty || addEditForm.controls['reason'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="addEditForm.controls['reason'].errors.required">
+                                Reason is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <input #box formControlName="remarks" class="form-control form-control-sm" type="text" />
+
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select formControlName="location" class="form-control form-control-sm">
+                            <option *ngFor="let item of locations" value="{{item.locationID}}">
+                                {{item.description}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-info">
+                            <label class="mr-3">Available?</label>
+                            <ng-toggle formControlName="isAvailable" onColor="{{availableToggleModel.onColor}}"
+                                onText="{{availableToggleModel.onText}}" offColor="{{availableToggleModel.offColor}}"
+                                offText="{{availableToggleModel.offText}}" [size]="availableToggleModel.size"
+                                (valueChange)="availableToggleChange($event)">
+                            </ng-toggle>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-info">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label class="mr-2">Claimed?</label>
+                                    <ng-toggle formControlName="isClaimed" onColor="{{claimToggleModel.onColor}}"
+                                        onText="{{claimToggleModel.onText}}" offColor="{{claimToggleModel.offColor}}"
+                                        offText="{{claimToggleModel.offText}}" [size]="claimToggleModel.size"
+                                        (valueChange)="claimedToggleChange($event)">
+                                    </ng-toggle>
+                                </div>
+                                <div class="form-group">
+                                    <div *ngIf="isClaimed" class="form-group ml-2">
+                                        <label class="mr-2">Date:</label>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-sm" formControlName="claimedDate"
+                                                placeholder="" name="dp" ngbDatepicker #d2="ngbDatepicker" required
+                                                readonly>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary btn-sm fa fa-calendar"
+                                                    (click)="d2.toggle()" type="button"
+                                                    [disabled]="isNotAvailable"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr />
+                    <button type="submit" class="btn btn-success  ml-3 pull-right"
+                        [disabled]="addEditForm.invalid || !isExists"><i class="fa fa-save"></i>
+                        Save</button>
+                    <button type="button" class="btn btn-danger  pull-right" (click)="cancel()"><i
+                            class="fa fa-warning"></i>
+                        Cancel</button>
+                </form>
+
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <swal #saveConfirmation title="Confirmation" text="Record Save" type="success">
+    </swal>
+</div>
+<swal #isExistSrCodeConfirmation title="SrCode already exists" text="Alert" type="danger"></swal>

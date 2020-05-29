@@ -1,0 +1,45 @@
+<ng-template #imageUpload let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title">Inventory Record List of <b>{{ invDetailDesc }}</b></h6>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th [class.active]="order === 'propertyNum'" (click)="setOrder('propertyNum')" class="w-15">Property
+                        # <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span></th>
+                    <th [class.active]="order === 'equipNum'" (click)="setOrder('equipNum')" class="w-30">Equipment #
+                        <span [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span></th>
+                    <th [class.active]="order === 'location'" (click)="setOrder('location')" class="w-40">Location <span
+                            [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span></th>
+                    <th [class.active]="order === 'status'" (click)="setOrder('status')" class="w-15">Status <span
+                            [hidden]="reverse">▼</span>
+                        <span [hidden]="!reverse">▲</span></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let record of records
+                            | orderBy: order:reverse:'case-insensitive'; let i = index">
+                    <th scope="row">
+                        {{i + 1}}</th>
+                    <td>{{record.propertyNum}}</td>
+                    <td>{{record.equipNum}}</td>
+                    <td>{{record.invLocation_Description}}</td>
+                    <td>{{record.status}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</ng-template>

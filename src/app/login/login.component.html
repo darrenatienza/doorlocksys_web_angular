@@ -1,22 +1,48 @@
 <div class="login-page" [@routerTransition]>
     <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular5</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                    </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h1><small>Door Access Management System</small></h1>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
-            </form>
+                <div class="card-body">
+                    <form [formGroup]="login_user_form" (ngSubmit)="onLoggedin()">
+                        <div class="form-content">
+                            <div class="form-group">
+                                <input formControlName="username" name="username" type="text"
+                                    class="form-control input-underline input-lg" placeholder="User Name" required>
+                                <div class="validation-text"
+                                    *ngIf="login_user_form.get('username').touched && login_user_form.get('username').hasError('required')">
+                                    User Name is required.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input formControlName="password" name="password" type="password"
+                                    class="form-control input-underline input-lg" placeholder="Password" required>
+                                <div *ngIf="login_user_form.get('password').touched && login_user_form.get('password').hasError('required')"
+                                    class="validation-text">
+                                    Password is required.
+                                </div>
+                            </div>
+                            <div *ngIf="error_message" class="alert alert-warning">
+                                {{error_message}}
+                            </div>
+                        </div>
+                        <button type="submit" class="rounded-btn" [disabled]="login_user_form.invalid" [routerLink]=""
+                            (click)="onLoggedin()">
+                            Log in </button>
+                        &nbsp;
+
+                        <a *ngIf="" class="rounded-btn" [routerLink]="['/signup']">Register</a>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>
+<swal #loginFailedConfirmation title="Authentication Failed" text="User Name or Password is invalid!" type="warning">
+</swal>

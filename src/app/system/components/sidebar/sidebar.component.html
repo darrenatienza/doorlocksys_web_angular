@@ -1,0 +1,40 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+
+    <div class="container" *ngIf="!collapsed">
+        <div class="avatar">
+            <i class="fa fa-fw fa-user-circle"></i>
+        </div>
+        <div class="user-profile">
+            <p>
+               {{userFullName}}
+            </p>
+            <p class="user-tag">
+                Current User
+            </p>
+        </div>
+
+
+    </div>
+    <div class="list-group">
+        <a routerLink="dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <span>{{ 'Dashboard' }}</span>
+        </a>
+        <a routerLink="users" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-wrench"></i>&nbsp;
+            <span>{{ 'Users'  }}</span>
+        </a>
+        <a routerLink="accesslogs" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-book"></i>&nbsp;
+            <span>{{ 'Access Logs' }}</span>
+        </a>
+        <a routerLink="device-monitor" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-tv"></i>&nbsp;
+            <span>{{ 'Device Monitor' }}</span>
+        </a>
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' }}</span>
+    </div>
+</nav>

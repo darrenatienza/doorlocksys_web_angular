@@ -1,0 +1,8 @@
+<app-page-header [heading]="'Users'" [icon]="'fa-users'"></app-page-header>
+
+
+<app-user-list *ngIf="show_user_list" (show_UserUpdateForm_event)="showUserUpdateForm($event)"
+    [show_user_update]="show_user_update">
+</app-user-list>
+
+<app-user-update *ngIf="show_user_update" [data]="data" (close_modal_event)="closeUserUpdateForm()"></app-user-update>

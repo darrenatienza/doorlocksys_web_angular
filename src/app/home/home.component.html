@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="#">{{title}}</a>
+    <div class="collapse navbar-collapse">
+        <form class="form-inline my-2 my-lg-0">
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown" ngbDropdown>
+
+            </li>
+        </ul>
+    </div>
+</nav>
+<section class="main-container">
+    <div class="container">
+        <div class="card card-default">
+            <div class="card-header">
+                <i class="fa fa-link fa-fw icon-24"></i> Quick Links
+            </div>
+            <div class="card-body table-responsive">
+                <div class="row">
+
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'bsu'" [icon]="'fa-home'" [label]="'BatStateU Official Site'"
+                            [actionTitle]="'Proceed'" [link]="'http://www.batstate-u.edu.ph'" [target]="'_blank'">
+                        </app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'danger'" [icon]="'fa-dashboard'" [label]="'BatStateU ICT Services'"
+                            [actionTitle]="'Proceed'" [link]="'http://dione.batstate-u.edu.ph/apps/emc2/mod/ict_services/#/dashboard'" [target]="'_blank'">
+                        </app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'success'" [icon]="'fa-dashboard'"
+                            [label]="'BatState U Rosario ICT Services'" [actionTitle]="'Proceed'"
+                            [link]="'#/apps/dashboard'"></app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'warning'" [icon]="'fa-calendar'"
+                            [label]="'BatStateU Applications (HERA)'" [actionTitle]="'Proceed'"
+                            [link]="'http://hera.batstate-u.edu.ph'" [target]="'_blank'"></app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'info'" [icon]="'fa-users'" [label]="'BatStateU HR System (DTR)'"
+                            [actionTitle]="'Proceed'" [link]="'http://project.batstate-u.edu.ph/hr/members/login'"
+                            [target]="'_blank'"></app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                        <app-sys-stat [bgClass]="'primary'" [icon]="'fa-book'" [label]="'BatStateU Procurement System'"
+                            [actionTitle]="'Proceed'"
+                            [link]="'http://project.batstate-u.edu.ph/procurement/members/login'" [target]="'_blank'">
+                        </app-sys-stat>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 mb-3">
+                            <app-sys-stat [bgClass]="'secondary'" [icon]="'fa-calendar'" [label]="'BatStateU Downloads'"
+                                [actionTitle]="'Proceed'"
+                                [link]="'http://hera.batstate-u.edu.ph/dl/updates/'" [target]="'_blank'">
+                            </app-sys-stat>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

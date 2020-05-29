@@ -1,0 +1,155 @@
+<!--<Signatory>-->
+<div class="alert alert-success">
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label>Prepared By:</label>
+            <input class="form-control form-control-sm mb-1" [(ngModel)]="preparedByName" type="text"
+                placeholder="Name here.." />
+            <input class="form-control form-control-sm" [(ngModel)]="preparedByDesignation" type="text"
+                placeholder="Designation here.." />
+        </div>
+        <div class="form-group col-sm-3">
+            <label>Reviewed:</label>
+            <input class="form-control form-control-sm mb-1" [(ngModel)]="reviewedByName" type="text"
+                placeholder="Name here.." />
+            <input class="form-control form-control-sm" [(ngModel)]="reviewedByDesignation" type="text"
+                placeholder="Designation here.." />
+        </div>
+        <div class="form-group col-sm-3">
+            <label>Verified:</label>
+            <input class="form-control form-control-sm mb-1" [(ngModel)]="verifiedByName" type="text"
+                placeholder="Name here.." />
+            <input class="form-control form-control-sm" [(ngModel)]="verifiedByDesignation" type="text"
+                placeholder="Designation here.." />
+        </div>
+        <div class="form-group col-sm-3">
+            <label>Approved:</label>
+            <input class="form-control form-control-sm mb-1" [(ngModel)]="approvedByName" type="text"
+                placeholder="Name here.." />
+            <input class="form-control form-control-sm" [(ngModel)]="approvedByDesignation" type="text"
+                placeholder="Designation here.." />
+        </div>
+    </div>
+</div>
+<!--</Signatory>-->
+
+<div class="card card-default">
+    <div class="card-header">
+        <i class="fa fa-table fa-fw"></i> Print Preview
+        <button class="btn btn-success pull-right btn-sm" (click)="close()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="card-body">
+        <div id="print">
+            <div class="report-header">
+                <img src="assets/images/bsu.jpg" height="80" width="80
+                        " class="logo">
+                <table>
+                    <tr>
+                        <td>Republic of the Philippines</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-20">Batangas State University Rosario</td>
+                    </tr>
+                    <tr>
+                        <td>Namunga, Rosario, Batangas</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-18">Security Services Office</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-18">Weekly Report</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <table class="report-table no-spacing" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="5"
+                            style=" border: 1px solid black; padding-left: 16px; padding-bottom: 16px; padding-bottom: 10px; font-family: 'Times New Roman', Times, serif;">
+                            Date
+                            Covered:
+                            {{ dateFrom | date:"longDate" }} -
+                            {{ dateTo | date:"longDate" }}
+                        </td>
+                    </tr>
+                    <tr class="description">
+
+                        <th width="15%">Date</th>
+                        <th width="25%">Details/Descriptions</th>
+                        <th width="20%">Action Taken or Provided
+                        </th>
+                        <th width="20%">Security Guard/s In-Charge
+                        </th>
+                        <th width="20%">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let record of records; let i = index">
+                        <td>
+                            {{record.date | date:"longDate"}}</td>
+                        <td>
+                            {{record.desc}}</td>
+                        <td>
+                            {{record.acts}}</td>
+                        <td>
+                            {{record.personnel}}</td>
+                        <td>
+                            {{record.rmks}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="width: 100%; font-family: 'Times New Roman', Times, serif; margin-top: 20px;">
+                <tr>
+                    <td>
+                        Prepared By:
+                    </td>
+                    <td style="padding-left: 50px">
+                        Reviewed:
+                    </td>
+                    <td style="padding-left: 50px">
+                        Verified:
+                    </td>
+                    <td style="padding-left: 50px">
+                        Noted:
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding-top: 14pt">
+                        {{preparedByName}}
+                    </td>
+                    <td style="font-weight:bold; padding-left: 50px; padding-top: 14pt">
+                        {{reviewedByName}}
+                    </td>
+                    <td style="font-weight:bold; padding-left: 50px; padding-top: 14pt">
+                        {{verifiedByName}}
+                    </td>
+                    <td style="font-weight:bold; padding-left: 50px; padding-top: 14pt">
+                        {{approvedByName}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{preparedByDesignation}}
+                    </td>
+                    <td style="padding-left: 50px">
+                        {{reviewedByDesignation}}
+                    </td>
+                    <td style="padding-left: 50px">
+                        {{verifiedByDesignation}}
+                    </td>
+                    <td style="padding-left: 50px">
+                        {{approvedByDesignation}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="btn btn-primary btn-sm pull-right" [useExistingCss]="true" printSectionId="print" (click)="saveData()" ngxPrint>
+            <i class="fa fa-print"></i>
+            Print
+        </button>
+    </div>
+</div>

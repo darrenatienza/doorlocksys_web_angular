@@ -1,0 +1,89 @@
+<div class="row">
+
+    <div class="col-xl-6">
+
+        <div class="card card-default mb-3">
+            <div class="card-header">
+                <i class="fa fa-book fa-fw"></i> Required Informations
+                <button class="btn btn-success pull-right btn-sm" (click)="cancel()"><i
+                        class="fa fa-times"></i></button>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <form [formGroup]="form" (ngSubmit)="save()" role="form">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <div class="input-group">
+                            <input formControlName="date" class="form-control form-control-sm" placeholder="" name="dp"
+                                ngbDatepicker #d1="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-sm fa fa-calendar" (click)="d1.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        <div *ngIf="form.controls['date'].invalid && (form.controls['date'].dirty || form.controls['date'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="form.controls['date'].errors.required">
+                                Date is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Details/Description</label>
+                        <textarea #box formControlName="desc" class="form-control form-control-sm" type="text" rows="4"
+                            (focus)="onFocus('desc')" (keyup)="onKeyup($event,'desc')"></textarea>
+                        <div *ngIf="form.controls['desc'].invalid && (form.controls['desc'].dirty || form.controls['date'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="form.controls['desc'].errors.required">
+                                Description is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Action Taken or Provided</label>
+                        <textarea #box formControlName="acts" class="form-control form-control-sm" type="text" rows="4"
+                            (focus)="onFocus('acts')" (keyup)="onKeyup($event,'acts')"></textarea>
+                        <div *ngIf="form.controls['acts'].invalid && (form.controls['acts'].dirty || form.controls['acts'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="form.controls['acts'].errors.required">
+                                Actions is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Security Guard/s In-Charge</label>
+                        <textarea #box formControlName="personnel" class="form-control form-control-sm" type="text"
+                            rows="4" (focus)="onFocus('personnel')" (keyup)="onKeyup($event,'personnel')"></textarea>
+                        <div *ngIf="form.controls['personnel'].invalid && (form.controls['personnel'].dirty || form.controls['personnel'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="form.controls['personnel'].errors.required">
+                                Personnel is Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <textarea #box formControlName="rmks" class="form-control form-control-sm" type="text" rows="4"
+                            (focus)="onFocus('rmks')" (keyup)="onKeyup($event,'rmks')"></textarea>
+                        <div *ngIf="form.controls['rmks'].invalid && (form.controls['rmks'].dirty || form.controls['rmks'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="form.controls['rmks'].errors.required">
+                                Remarks is required.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success  ml-3 pull-right" [disabled]="form.invalid"><i
+                            class="fa fa-save"></i>
+                        Save</button>
+                    <button type="button" class="btn btn-danger  pull-right" (click)="cancel()"><i
+                            class="fa fa-warning"></i>
+                        Cancel</button>
+                </form>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

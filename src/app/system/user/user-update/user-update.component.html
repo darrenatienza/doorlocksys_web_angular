@@ -1,0 +1,56 @@
+<ng-template #userUpdateForm let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title"><b>{{modalTitle}}</b></h6>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addEditForm" (ngSubmit)="save()">
+
+            <div class="form-group">
+                <label>User Name</label>
+                <input formControlName="username" class="form-control form-control-sm" type="text" />
+                <div *ngIf="addEditForm.controls['username'].invalid && (addEditForm.controls['username'].dirty || addEditForm.controls['username'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addEditForm.controls['username'].errors.required">
+                        UserName is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-group">
+                    <input formControlName="password" class="form-control form-control-sm" type="text" required />
+                    <!--[readonly] for read only control-->
+                </div>
+                <div *ngIf="addEditForm.controls['password'].invalid && (addEditForm.controls['password'].dirty || addEditForm.controls['password'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addEditForm.controls['password'].errors.required">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <div class="input-group">
+                    <input formControlName="fullname" class="form-control form-control-sm" type="text" required />
+                    <!--[readonly] for read only control-->
+                </div>
+                <div *ngIf="addEditForm.controls['fullname'].invalid && (addEditForm.controls['fullname'].dirty || addEditForm.controls['fullname'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="addEditForm.controls['fullname'].errors.required">
+                        Full Name is required.
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <button type="submit" [disabled]="addEditForm.invalid" class="btn btn-success  ml-3 pull-right"><i
+                    class="fa fa-save"></i>
+                Save</button>
+            <button type="button" class="btn btn-danger  pull-right" (click)="close()"><i class="fa fa-warning"></i>
+                Cancel</button>
+        </form>
+    </div>
+
+</ng-template>

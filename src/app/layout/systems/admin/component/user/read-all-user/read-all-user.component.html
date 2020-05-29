@@ -1,0 +1,88 @@
+<div class="card card-default mb-3">
+    <div class="card-header">
+
+        <i class="fa fa-table fa-fw"></i> List of Users
+
+    </div>
+
+    <div class="card-body table-responsive">
+        <div class="form-inline">
+            <div class="form-group">
+                <button class="btn btn-success btn-sm" (click)="addUser()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <div class="vl"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input [(ngModel)]="criteria" class="form-control form-control-sm" placeholder="Search..."
+                        type="text" />
+                    <button class="btn btn-danger input-group-append btn-sm" type="button" (click)="search()"><span
+                            class="fa fa-search"></span></button>
+                </div>
+            </div>
+            <!--<button class="btn btn-primary btn-sm mb-3 pull-right" (click)="refresh()">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                        <button class="btn btn-primary btn-sm mb-3 pull-right mr-1" (click)="open(content)">
+                            <i class="fa fa-search"></i>
+                        </button> -->
+
+
+        </div>
+
+
+
+        <table class="table table-bordered table-hover table-sm mt-3">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="15%">Date Created</th>
+                    <th width="15%">User Name</th>
+                    <th width="30%">Full Name</th>
+                    <th width="10%">Role</th>
+                    <th width="15%">Created By</th>
+                    <th width="15%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let record of records; let i = index">
+                    <th scope="row">
+                        {{i + 1}}</th>
+                    <td>{{record.createDate | date:"shortDate"}}</td>
+                    <td>{{record.userName}}</td>
+                    <td>{{record.fullName}}</td>
+                    <td>{{record.role}}</td>
+                    <td>{{record.createdBy}}</td>
+
+                    <th>
+                        <!--<div ngbDropdown class="d-inline-block dropdown">
+                                        <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Action</button>
+                                        <div ngbDropdownMenu>
+                                            <button class="dropdown-item btn-sm" (click)="edit(record.property_record_id)">Modify</button>
+                                            <button class="dropdown-item btn-sm" (click)="delete(record.property_record_id)">Delete</button>
+                                        </div>
+                                    </div> -->
+                        <button type="button" class="btn btn-info btn-sm mr-1" (click)="editUser(record.userID)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm"
+                            (click)="showdeleteUserConfirmation(record.userID)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!--</card>-->
+</div>
+<swal #comfirmationDeleteSwal title="Delete Selected Record?" text="This cannot be undone" type="question"
+    [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUser()">
+</swal>
+<swal #confirmationDeleteSucceedSwal title="Confirmation" text="Record has been deleted!" type="success">
+</swal>

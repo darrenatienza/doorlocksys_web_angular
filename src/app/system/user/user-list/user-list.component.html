@@ -1,0 +1,86 @@
+<div class="row">
+
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <i class="fa fa-table fa-fw"></i> List
+            </div>
+
+            <div class="card-body  table-responsive">
+
+                <div class="form-inline mb-2">
+                    <div class="form-group">
+                        <button class="btn btn-success btn-sm mr-1" (click)="add()">
+                            <i class="fa fa-plus"></i>
+                            Add New
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input [(ngModel)]="criteria" class="form-control form-control-sm" placeholder="Search..."
+                                type="text" />
+                            <button class="btn btn-danger input-group-append btn-sm" type="button" (click)="search()"><span
+                                    class="fa fa-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="table table-bordered table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Create Time Stamp</th>
+                                <th>User Name</th>
+                                <th>Full Name</th>
+                                <th>Has FingerPrint?</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let record of records | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index"  [ngClass]="{'text-danger':record.fingerprints == 0}">
+                                <th scope="row">
+                                    {{i + 1}}</th>
+                                <td>{{record.createtimestamp | date:"longDate"}}</td>
+                                <td>{{record.username}}</td>
+                                <td>{{record.fullname}}</td>
+                                <td [ngClass]="{'text-success':record.fingerprints > 0}"
+                                    >
+                                    {{record.fingerprints | intYesNo }}</td>
+                                <th>
+                                    <button type="button" class="btn btn-info btn-sm mr-1"
+                                        (click)="edit(record.userid)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm mr-1" (click)="resetFinger(record.userid)">
+                                        <fa-icon [icon]="['fas', 'fingerprint']" size="lg"></fa-icon>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="delete(record.userid)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--</card>-->
+        </div>
+        <div class="justify-content-center mt-1">
+            <ngb-pagination [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                [collectionSize]="records.length / pageSize"></ngb-pagination>
+        </div>
+    </div>
+
+</div>
+<swal #showDeleteQuestion title="Delete Selected Record?" text="This cannot be undone" type="question"
+    [showCancelButton]="true" [focusCancel]="true">
+</swal>
+<swal #showRecordDeleted title="Confirmation" text="Record has been deleted!" type="success">
+</swal>
+<swal #alert title="Notification" text="Alert" type="success">
+</swal>
+
+<swal #fingerprintAlert title="Notification" text="Alert" type="success" [showCancelButton]="true">
+</swal>

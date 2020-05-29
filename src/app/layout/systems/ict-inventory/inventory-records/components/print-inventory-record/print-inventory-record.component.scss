@@ -1,0 +1,81 @@
+@media all {
+
+    .currentDate {
+        margin-top: 20px;
+    }
+
+    p {
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .footer-name {
+        font-weight: bold;
+        padding-top: 24px;
+    }
+
+    .report-header {
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        margin: auto;
+        width: 50%;
+    }
+
+    .logo {
+        float: left;
+        margin-right: 5px;
+    }
+
+    .report-header table {
+        text-align: center;
+    }
+
+    .headerSize20 {
+        font-size: 20px;
+    }
+
+    .headerSize16 {
+        font-size: 16px;
+    }
+
+    .headerSize18 {
+        font-size: 18px;
+    }
+
+    .report-table {
+        border: 1px solid black;
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Times New Roman', Times, serif !important;
+        margin-top: 10px;
+    }
+
+    .report-table th {
+        border: 1px solid black !important;
+        text-align: left;
+        font-size: 12pt;
+        padding-left: 3px;
+    }
+
+    .report-table td {
+        word-wrap: break-word;
+        border: 1px solid black;
+        white-space: pre-wrap;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 3px;
+    }
+
+    .report-footer {
+        width: 100%;
+        font-family: 'Times New Roman', Times, serif;
+        margin-top: 20px;
+    }
+
+    .padding-left-50 {
+        padding-left: 50px
+    }
+
+    .font-bold {
+        font-weight: bold
+    }
+}
